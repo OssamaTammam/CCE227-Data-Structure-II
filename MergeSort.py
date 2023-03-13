@@ -1,6 +1,6 @@
 def mergeSort(arr):
     length = len(arr)
-    if (length <= 1):
+    if length <= 1:
         return
     middle = length // 2
     left = arr[:middle]
