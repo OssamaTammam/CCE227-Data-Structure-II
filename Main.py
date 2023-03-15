@@ -24,10 +24,10 @@ def copyArray(original, clone):
 
 
 if __name__ == '__main__':
-    originalArray = generateRandomArray(10)
+    originalArray = generateRandomArray(10000)
     tempArray = []
     print(f"Original array is {originalArray}")
-    print("---------------------------------------------------------------------------")
+    print("--------------------------------------------------------------------------")
 
     # # quick sort algorithm
     # copyArray(originalArray, tempArray)
