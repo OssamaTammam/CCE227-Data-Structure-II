@@ -37,8 +37,3 @@ def merge(arr, left, right):
         arr[i] = right[r]
         i += 1
         r += 1
-
-
-arr = [9, 4, 6, 7, 1, 3, 5, 4, 3, 2, 10, 80]
-mergeSort(arr)
-print(arr)

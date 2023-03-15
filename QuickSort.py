@@ -20,8 +20,3 @@ def partition(arr, start, end):
     i += 1
     (arr[i], arr[pivot]) = (arr[pivot], arr[i])
     return i
-
-
-arr = [8, 2, 6, 7, 10, 1, 40, 10]
-quickSort(arr, 0, len(arr))
-print(arr)
