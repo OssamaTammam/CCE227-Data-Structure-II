@@ -1,6 +1,12 @@
-import random, time
-import pandas as pd
-import QuickSort, MaxHeap, MergeSort, InsertionSort, SelectionSort
+import random
+import time
+
+import HeapSort
+import HybridMergeSelection
+import InsertionSort
+import MergeSort
+import QuickSort
+import SelectionSort
 
 
 def generateRandomArray(size):
@@ -54,7 +60,7 @@ if __name__ == '__main__':
     # heap sort algorithm
     copyArray(originalArray, tempArray)
     start = time.time()
-    MaxHeap.heapSort(tempArray)
+    HeapSort.heapSort(tempArray)
     end = time.time()
     runningTime = (end - start) * 1000
     print(
@@ -84,6 +90,28 @@ if __name__ == '__main__':
     print("---------------------------------------------------------------------------")
     copyArray(originalArray, tempArray)
 
+    # hybrid merge and selection sort algorithm
+    copyArray(originalArray, tempArray)
+    start = time.time()
+    HybridMergeSelection.hybridMergeSelection(tempArray, 6)
+    end = time.time()
+    runningTime = (end - start) * 1000
+    print(
+        f"Running time for Hybrid Merge and Selection Sort is {runningTime} ms \nArray after sorting is {tempArray}\nIs sorted = {isSorted(tempArray)}")
+    print("---------------------------------------------------------------------------")
+    copyArray(originalArray, tempArray)
+
+    # find kth smallest element algorithm
+    copyArray(originalArray, tempArray)
+    start = time.time()
+    k = QuickSort.findKthElement(tempArray, 0, len(tempArray) - 1, 3)
+    end = time.time()
+    runningTime = (end - start) * 1000
+    print(
+        f"Running time for Finding Kth Smallest Element is {runningTime} ms \nKth smallest element is {k}")
+    print("---------------------------------------------------------------------------")
+    copyArray(originalArray, tempArray)
+
     quickSortTime = []
     mergeSortTime = []
     heapSortTime = []
@@ -98,7 +126,8 @@ if __name__ == '__main__':
         start = time.time()
         QuickSort.quickSort(tempArray, 0, len(tempArray) - 1)
         end = time.time()
-        runningTime = (end - start) * 1000
+        runningTime = (end - start) * 1e6
+
         quickSortTime.append(runningTime)
 
         # merge sort running time
@@ -106,15 +135,17 @@ if __name__ == '__main__':
         start = time.time()
         MergeSort.mergeSort(tempArray)
         end = time.time()
-        runningTime = (end - start) * 1000
+        runningTime = (end - start) * 1e6
+
         mergeSortTime.append(runningTime)
 
         # heap sort running time
         copyArray(originalArray, tempArray)
         start = time.time()
-        MaxHeap.heapSort(tempArray)
+        HeapSort.heapSort(tempArray)
         end = time.time()
-        runningTime = (end - start) * 1000
+        runningTime = (end - start) * 1e6
+
         heapSortTime.append(runningTime)
 
         # selection sort running time
@@ -122,7 +153,8 @@ if __name__ == '__main__':
         start = time.time()
         SelectionSort.selectionSort(tempArray)
         end = time.time()
-        runningTime = (end - start) * 1000
+        runningTime = (end - start) * 1e6
+
         selectionSortTime.append(runningTime)
 
         # insertion sort running time
@@ -130,16 +162,15 @@ if __name__ == '__main__':
         start = time.time()
         InsertionSort.insertionSort(tempArray)
         end = time.time()
-        runningTime = (end - start) * 1000
+        runningTime = (end - start) * 1e6
+
         insertionSortTime.append(runningTime)
 
         arraySizes.append(arraySize)
         arraySize += 1000
 
-    # excelArray = [arraySizes, quickSortTime, mergeSortTime, heapSortTime, selectionSortTime, insertionSortTime]
-    # time.sleep(3)
+    excelArray = [arraySizes, quickSortTime, mergeSortTime, heapSortTime, selectionSortTime, insertionSortTime]
     # df = pd.DataFrame(excelArray).T
-    # time.sleep(3)
     # df.to_excel(excel_writer="running_times.xlsx")
 
     print("Done")

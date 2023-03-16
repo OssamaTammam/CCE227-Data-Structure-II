@@ -7,6 +7,12 @@ class MaxHeap:
         self.Heap = [sys.maxsize]
         self.sortedHeap = []
 
+    def __init__(self, arr):
+        self.size = len(arr)
+        self.Heap = [sys.maxsize]
+        self.Heap.extend(arr)
+        self.buildMaxHeap()
+
     def setHeap(self, arr):
         self.Heap = [sys.maxsize]
         for i in range(len(arr)):
@@ -81,11 +87,3 @@ class MaxHeap:
             if not (self.Heap[i] >= self.Heap[self.rightChild(i)] and self.Heap[i] >= self.Heap[self.leftChild(i)]):
                 return False
         return True
-
-
-def heapSort(arr):
-    heap = MaxHeap()
-    heap.setHeap(arr)
-    heap.heapSort()
-    arr.clear()
-    arr.extend(heap.sortedHeap[1::])
