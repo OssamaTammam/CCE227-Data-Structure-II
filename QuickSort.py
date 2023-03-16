@@ -2,14 +2,20 @@ import random
 
 
 def randomizedPartition(arr, p, r):
+    # randomize pivot
     pivot = random.randint(p, r)
+    # swap pivot with last element
     x = arr[pivot]
     arr[pivot], arr[r] = arr[r], arr[pivot]
+    # partition
     i = p - 1
+    # loop through array
     for j in range(p, r):
+        # if current element is smaller than pivot, swap with element after i
         if arr[j] <= x:
             i = i + 1
             arr[j], arr[i] = arr[i], arr[j]
+    # swap pivot with element after i
     arr[i + 1], arr[r] = arr[r], arr[i + 1]
     return i + 1
 
