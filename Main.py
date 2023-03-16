@@ -1,6 +1,8 @@
 import random
 import time
 
+import pandas as pd
+
 import HeapSort
 import HybridMergeSelection
 import InsertionSort
@@ -30,7 +32,7 @@ def copyArray(original, clone):
 
 
 if __name__ == '__main__':
-    originalArray = generateRandomArray(100)
+    originalArray = generateRandomArray(1000)
     tempArray = []
     print(f"Original array is {originalArray}")
     print("---------------------------------------------------------------------------")
@@ -120,7 +122,9 @@ if __name__ == '__main__':
     arraySizes = []
     arraySize = 1000
 
-    while arraySize <= 100000:
+    while arraySize <= 10000:
+        originalArray = generateRandomArray(arraySize)
+
         # quick sort running time
         copyArray(originalArray, tempArray)
         start = time.time()
@@ -169,8 +173,12 @@ if __name__ == '__main__':
         arraySizes.append(arraySize)
         arraySize += 1000
 
-    excelArray = [arraySizes, quickSortTime, mergeSortTime, heapSortTime, selectionSortTime, insertionSortTime]
-    # df = pd.DataFrame(excelArray).T
-    # df.to_excel(excel_writer="running_times.xlsx")
+    df = pd.DataFrame({'Input Size (N)': arraySizes,
+                       'Quick Sort': quickSortTime,
+                       'Merge Sort': mergeSortTime,
+                       'Heap Sort': heapSortTime,
+                       'Selection Sort': selectionSortTime,
+                       'Insertion Sort': insertionSortTime}).T
+    df.to_excel(excel_writer="running_times.xlsx")
 
     print("Done")
