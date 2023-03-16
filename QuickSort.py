@@ -1,22 +1,21 @@
 import random
 
 
-def quickSort(arr, start, end):
-    if end <= start:  # base case
-        return
-    else:
-        pivot = partition(arr, start, end)
-        quickSort(arr, start, pivot - 1)
-        quickSort(arr, pivot + 1, end)
+def randomizedPartition(arr, p, r):
+    pivot = random.randint(p, r)
+    x = arr[pivot]
+    arr[pivot], arr[r] = arr[r], arr[pivot]
+    i = p - 1
+    for j in range(p, r):
+        if arr[j] <= x:
+            i = i + 1
+            arr[j], arr[i] = arr[i], arr[j]
+    arr[i + 1], arr[r] = arr[r], arr[i + 1]
+    return i + 1
 
 
-def partition(arr, start, end):
-    pivot = random.randint(start, end)
-    i = start - 1
-    for j in range(start, end):
-        if arr[j] < arr[pivot]:
-            i += 1
-            (arr[i], arr[j]) = (arr[j], arr[i])
-    i += 1
-    (arr[i], arr[pivot]) = (arr[pivot], arr[i])
-    return i
+def quickSort(arr, p, r):
+    if p < r:
+        q = randomizedPartition(arr, p, r)
+        quickSort(arr, p, q - 1)
+        quickSort(arr, q + 1, r)

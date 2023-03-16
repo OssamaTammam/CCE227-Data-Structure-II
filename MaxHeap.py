@@ -86,7 +86,6 @@ class MaxHeap:
 def heapSort(arr):
     heap = MaxHeap()
     heap.setHeap(arr)
-    print(heap.isMaxHeap())
     heap.heapSort()
     arr.clear()
     arr.extend(heap.sortedHeap[1::])

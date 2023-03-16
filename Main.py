@@ -1,5 +1,4 @@
-import random
-import time
+import random, time, xlsxwriter, pandas
 import QuickSort, MaxHeap, MergeSort, InsertionSort, SelectionSort
 
 
@@ -24,20 +23,20 @@ def copyArray(original, clone):
 
 
 if __name__ == '__main__':
-    originalArray = generateRandomArray(10000)
+    originalArray = generateRandomArray(100)
     tempArray = []
     print(f"Original array is {originalArray}")
     print("---------------------------------------------------------------------------")
 
-    # # quick sort algorithm
-    # copyArray(originalArray, tempArray)
-    # start = time.time()
-    # QuickSort.quickSort(tempArray)
-    # end = time.time()
-    # print(
-    #     f"Running time for Quick Sort is {end - start} ms \nArray after sorting is {tempArray}\nIs sorted = {isSorted(tempArray)}")
-    # print("---------------------------------------------------------------------------")
-    # copyArray(originalArray, tempArray)
+    # quick sort algorithm
+    copyArray(originalArray, tempArray)
+    start = time.time()
+    QuickSort.quickSort(tempArray, 0, len(tempArray) - 1)
+    end = time.time()
+    print(
+        f"Running time for Quick Sort is {end - start} ms \nArray after sorting is {tempArray}\nIs sorted = {isSorted(tempArray)}")
+    print("---------------------------------------------------------------------------")
+    copyArray(originalArray, tempArray)
 
     # merge sort algorithm
     copyArray(originalArray, tempArray)
@@ -79,8 +78,51 @@ if __name__ == '__main__':
     print("---------------------------------------------------------------------------")
     copyArray(originalArray, tempArray)
 
-    QuickSort = []
-    MergeSort = []
-    HeapSort = []
-    SelectionSort = []
-    InsertionSort = []
+    quickSortTime = []
+    mergeSortTime = []
+    heapSortTime = []
+    selectionSortTime = []
+    insertionSortTime = []
+    arraySizes = []
+    arraySize = 1000
+
+    while arraySize <= 100000:
+        # quick sort running time
+        copyArray(originalArray, tempArray)
+        start = time.time()
+        QuickSort.quickSort(tempArray, 0, len(tempArray) - 1)
+        end = time.time()
+        quickSortTime.append(end - start)
+
+        # merge sort running time
+        copyArray(originalArray, tempArray)
+        start = time.time()
+        MergeSort.mergeSort(tempArray)
+        end = time.time()
+        mergeSortTime.append(end - start)
+
+        # heap sort running time
+        copyArray(originalArray, tempArray)
+        start = time.time()
+        MaxHeap.heapSort(tempArray)
+        end = time.time()
+        heapSortTime.append(end - start)
+
+        # selection sort running time
+        copyArray(originalArray, tempArray)
+        start = time.time()
+        SelectionSort.selectionSort(tempArray)
+        end = time.time()
+        selectionSortTime.append(end - start)
+
+        # insertion sort running time
+        copyArray(originalArray, tempArray)
+        start = time.time()
+        InsertionSort.insertionSort(tempArray)
+        end = time.time()
+        insertionSortTime.append(end - start)
+
+        arraySizes.append(arraySize)
+        arraySize += 1000
+
+    print("Done")
