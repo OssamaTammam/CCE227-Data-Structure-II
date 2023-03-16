@@ -19,3 +19,13 @@ def quickSort(arr, p, r):
         q = randomizedPartition(arr, p, r)
         quickSort(arr, p, q - 1)
         quickSort(arr, q + 1, r)
+
+
+def findKthElement(arr, low, high, k):
+    q = randomizedPartition(arr, low, high)
+    if q == k - 1:
+        return arr[q]
+    elif q < k - 1:
+        return findKthElement(arr, q + 1, high, k)
+    else:
+        return findKthElement(arr, low, q - 1, k)
