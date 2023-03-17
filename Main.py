@@ -32,7 +32,7 @@ def copyArray(original, clone):
 
 
 if __name__ == '__main__':
-    originalArray = generateRandomArray(10000)
+    originalArray = generateRandomArray(1000)
     tempArray = []
     print(f"Original array is {originalArray}")
     print("---------------------------------------------------------------------------")
@@ -46,7 +46,6 @@ if __name__ == '__main__':
     print(
         f"Running time for Quick Sort is {runningTime} ms \nArray after sorting is {tempArray}\nIs sorted = {isSorted(tempArray)}")
     print("---------------------------------------------------------------------------")
-    copyArray(originalArray, tempArray)
 
     # merge sort algorithm
     copyArray(originalArray, tempArray)
@@ -57,7 +56,6 @@ if __name__ == '__main__':
     print(
         f"Running time for Merge Sort is {runningTime} ms \nArray after sorting is {tempArray}\nIs sorted = {isSorted(tempArray)}")
     print("---------------------------------------------------------------------------")
-    copyArray(originalArray, tempArray)
 
     # heap sort algorithm
     copyArray(originalArray, tempArray)
@@ -68,7 +66,6 @@ if __name__ == '__main__':
     print(
         f"Running time for Heap Sort is {runningTime} ms \nArray after sorting is {tempArray}\nIs sorted = {isSorted(tempArray)}")
     print("---------------------------------------------------------------------------")
-    copyArray(originalArray, tempArray)
 
     # selection sort algorithm
     copyArray(originalArray, tempArray)
@@ -79,7 +76,6 @@ if __name__ == '__main__':
     print(
         f"Running time for Selection Sort is {runningTime} ms \nArray after sorting is {tempArray}\nIs sorted = {isSorted(tempArray)}")
     print("---------------------------------------------------------------------------")
-    copyArray(originalArray, tempArray)
 
     # insertion sort algorithm
     copyArray(originalArray, tempArray)
@@ -90,7 +86,6 @@ if __name__ == '__main__':
     print(
         f"Running time for Insertion Sort is {runningTime} ms \nArray after sorting is {tempArray}\nIs sorted = {isSorted(tempArray)}")
     print("---------------------------------------------------------------------------")
-    copyArray(originalArray, tempArray)
 
     # hybrid merge and selection sort algorithm
     copyArray(originalArray, tempArray)
@@ -101,18 +96,16 @@ if __name__ == '__main__':
     print(
         f"Running time for Hybrid Merge and Selection Sort is {runningTime} ms \nArray after sorting is {tempArray}\nIs sorted = {isSorted(tempArray)}")
     print("---------------------------------------------------------------------------")
-    copyArray(originalArray, tempArray)
 
     # find kth smallest element algorithm
     copyArray(originalArray, tempArray)
     start = time.time()
-    k = QuickSort.findKthElement(tempArray, 0, len(tempArray) - 1, 200)
+    k = QuickSort.findKthElement(tempArray, 0, len(tempArray) - 1, 10)
     end = time.time()
     runningTime = (end - start) * 1000
     print(
         f"Running time for Finding Kth (200th) Smallest Element is {runningTime} ms \nKth smallest element is {k}")
     print("---------------------------------------------------------------------------")
-    copyArray(originalArray, tempArray)
 
     quickSortTime = []
     mergeSortTime = []
