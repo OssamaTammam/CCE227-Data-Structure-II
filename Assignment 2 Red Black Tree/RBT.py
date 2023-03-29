@@ -19,7 +19,7 @@ class Node:
 class RBT:
     def __init__(self):
         self.NIL = Node(None)
-        self.Nil.color.flipcolor()
+        self.NIL.color.flipcolor()
         self.root = self.NIL
 
     def leftRotate(self, rotatedNode):
@@ -83,3 +83,4 @@ class RBT:
         self.restoreRBT(newNode)
 
     def restoreRBT(self, node):
+        pass
