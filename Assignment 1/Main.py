@@ -32,7 +32,7 @@ def copyArray(original, clone):
 
 
 if __name__ == '__main__':
-    originalArray = generateRandomArray(1000)
+    originalArray = generateRandomArray(10)
     tempArray = []
     print(f"Original array is {originalArray}")
     print("---------------------------------------------------------------------------")
@@ -100,7 +100,7 @@ if __name__ == '__main__':
     # find kth smallest element algorithm
     copyArray(originalArray, tempArray)
     start = time.time()
-    k = QuickSort.findKthElement(tempArray, 0, len(tempArray) - 1, 10)
+    k = QuickSort.findKthElement(tempArray, 0, len(tempArray) - 1, 3)
     end = time.time()
     runningTime = (end - start) * 1000
     print(
@@ -169,12 +169,15 @@ if __name__ == '__main__':
         arraySize += 1000
 
     calcTimeEnd = time.time()
-    df = pd.DataFrame({'Input Size (N)': arraySizes,
-                       'Quick Sort': quickSortTime,
-                       'Merge Sort': mergeSortTime,
-                       'Heap Sort': heapSortTime,
-                       'Selection Sort': selectionSortTime,
-                       'Insertion Sort': insertionSortTime}).T
-    df.to_excel(excel_writer="running_times.xlsx")
+    try:
+        df = pd.DataFrame({'Input Size (N)': arraySizes,
+                           'Quick Sort': quickSortTime,
+                           'Merge Sort': mergeSortTime,
+                           'Heap Sort': heapSortTime,
+                           'Selection Sort': selectionSortTime,
+                           'Insertion Sort': insertionSortTime}).T
+        df.to_excel(excel_writer="running_times.xlsx")
+    except:
+        print("Error while writing to excel file")
 
     print(f"Time for all calculations is {calcTimeEnd - calcTimeStart} seconds")
