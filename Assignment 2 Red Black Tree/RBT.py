@@ -72,7 +72,7 @@ class RBT:
 
         # set new parameters for new node
         newNode.parent = prev
-        if prev is self:
+        if prev is None:
             self.root = newNode
         elif val < prev.val:
             prev.leftChild = newNode
