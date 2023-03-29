@@ -19,7 +19,7 @@ class Node:
 class RBT:
     def __init__(self):
         self.NIL = Node(None)
-        self.NIL.color.flipcolor()
+        self.NIL.flipColor()
         self.root = self.NIL
 
     def leftRotate(self, rotatedNode):
@@ -80,7 +80,67 @@ class RBT:
             prev.rightChild = newNode
 
         # balance red black tree
-        self.restoreRBT(newNode)
+        self.insertFixup(newNode)
 
-    def restoreRBT(self, node):
-        pass
+    def insertFixup(self, node):
+        if node == self.root:
+            node.flipColor()
+            return
+        while node.parent.color == 'R':
+            if node.parent.isLeftChild():
+                uncle = node.parent.parent.rightChild
+                if uncle.color == 'R':
+                    uncle.flipColor()
+                    node.parent.flipColor()
+                    node.parent.parent.flipColor()
+                    node = node.parent.parent
+                else:
+                    if node.isRightChild():
+                        node = node.parent
+                        self.leftRotate(node)
+                    node.parent.flipColor()
+                    node.parent.parent.flipColor()
+                    self.rightRotate(node.parent.parent)
+            else:
+                uncle = node.parent.parent.leftChild
+                if uncle.color == 'R':
+                    uncle.flipColor()
+                    node.parent.flipColor()
+                    node.parent.parent.flipColor()
+                    node = node.parent.parent
+                else:
+                    if node.isLeftChild():
+                        node = node.parent
+                        self.rightRotate(node)
+                    node.parent.flipColor()
+                    node.parent.parent.flipColor()
+                    self.leftRotate(node.parent.parent)
+            if node == self.root:
+                break
+
+    def search(self, key):
+        curr = self.root
+        while curr is not self.NIL:
+            if curr.val == key:
+                return curr
+            elif key < curr.val:
+                curr = curr.leftChild
+            else:
+                curr = curr.rightChild
+        return self.NIL
+
+    def treeSize(self):
+        return self.calcTreeSize(self.root)
+
+    def calcTreeSize(self, root):
+        if root == self.NIL:
+            return 0
+        return 1 + self.calcTreeSize(root.leftChild) + self.calcTreeSize(root.rightChild)
+
+    def treeHeight(self):
+        return self.calcTreeHeight(self.root)
+
+    def calcTreeHeight(self, root):
+        if root == self.NIL:
+            return 0
+        return 1 + max(self.calcTreeHeight(root.leftChild), self.calcTreeHeight(root.leftChild))
