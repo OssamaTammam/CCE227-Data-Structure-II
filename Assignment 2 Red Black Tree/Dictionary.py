@@ -5,6 +5,7 @@ class Dictionary:
     def __init__(self, fileName):
         self.fileName = fileName + ".txt"
         self.dictTree = RBT.RBT()
+        self.loadFile()
 
     def loadFile(self):
         dictFile = open(self.fileName, "r")
@@ -29,4 +30,4 @@ class Dictionary:
         return True
 
     def printSize(self):
-        print(f"Number of elements is{self.dictTree.treeSize()}\nTree height is{self.dictTree.treeHeight()}")
+        print(f"Number of elements is {self.dictTree.treeSize()}\nTree height is {self.dictTree.treeHeight()}")

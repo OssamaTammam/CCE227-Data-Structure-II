@@ -1,0 +1,11 @@
+find
+word
+new
+old
+apple
+banana
+street
+meal
+good
+bad
+love
