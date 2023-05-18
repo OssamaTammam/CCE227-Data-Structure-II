@@ -1,11 +1,10 @@
-import RBT1
-import RedBlackTree
+import RBT
 
 
 class Dictionary:
     def __init__(self, fileName):
         self.fileName = fileName + ".txt"
-        self.dictTree = RBT1.RBT()
+        self.dictTree = RBT.RBT()
         self.loadFile()
 
     def loadFile(self):
@@ -19,16 +18,17 @@ class Dictionary:
             print("ERROR: Word already in the dictionary!")
         else:
             self.dictTree.insert(word)
+            self.printSize()
         # dictFile = open(self.fileName, "a")
         # dictFile.write(f"{word}\n")
         # dictFile.close()
 
     def search(self, word):
-        if self.dictTree.search(word) is self.dictTree.NIL:
+        if self.dictTree.search(word) is None:
             print("NO")
             return False
         print("YES")
         return True
 
     def printSize(self):
-        print(f"Number of elements is {self.dictTree.treeSize()}\nTree height is {self.dictTree.treeHeight()}")
+        print(f"Number of elements is {self.dictTree.treeSize()}\nTree height is {self.dictTree.treeHeight(self.dictTree.root)}")
