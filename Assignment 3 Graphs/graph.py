@@ -6,17 +6,14 @@ class Graph:
     def __init__(self, is_directed=False):
         # u : [(weight,v),.....]
         self.graph = {}
-        self.no_vertices = 0
         self.directed = is_directed
 
     def add_edge(self, u, v, weight):
         # u -> v if graph is directed
         if u not in self.graph:
             self.graph[u] = []
-            self.no_vertices += 1
         if v not in self.graph:
             self.graph[v] = []
-            self.no_vertices += 1
         self.graph[u].append((weight, v))
         if self.directed:
             self.graph[v].append((weight, u))

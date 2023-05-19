@@ -14,33 +14,38 @@ def generate_random_graph():
     return random_graph
 
 
-prim_graph = graph.Graph()
-prim_graph.graph = {
-    'a': [(4, 'b'), (8, 'h')],
-    'b': [(4, 'a'), (11, 'h'), (8, 'c')],
-    'c': [(8, 'b'), (2, 'i'), (4, 'f'), (7, 'd')],
-    'd': [(7, 'c'), (14, 'f'), (9, 'e')],
-    'e': [(9, 'd'), (10, 'f')],
-    'f': [(10, 'e'), (14, 'd'), (4, 'c'), (2, 'g')],
-    'g': [(2, 'f'), (6, 'i'), (1, 'h')],
-    'h': [(1, 'g'), (7, 'i'), (11, 'b'), (8, 'a')],
-    'i': [(6, 'g'), (7, 'h'), (2, 'c')]
-}
+def main():
+    prim_graph = graph.Graph()
+    prim_graph.graph = {
+        'a': [(4, 'b'), (8, 'h')],
+        'b': [(4, 'a'), (11, 'h'), (8, 'c')],
+        'c': [(8, 'b'), (2, 'i'), (4, 'f'), (7, 'd')],
+        'd': [(7, 'c'), (14, 'f'), (9, 'e')],
+        'e': [(9, 'd'), (10, 'f')],
+        'f': [(10, 'e'), (14, 'd'), (4, 'c'), (2, 'g')],
+        'g': [(2, 'f'), (6, 'i'), (1, 'h')],
+        'h': [(1, 'g'), (7, 'i'), (11, 'b'), (8, 'a')],
+        'i': [(6, 'g'), (7, 'h'), (2, 'c')]
+    }
 
-dijkstra_graph = graph.Graph(True)
-dijkstra_graph.graph = {
-    's': [(5, 'y'), (10, 't')],
-    'y': [(3, 't'), (2, 'z'), (9, 'x')],
-    'z': [(6, 'x'), (7, 's')],
-    't': [(2, 'y'), (1, 'x')],
-    'x': [(4, 'z')]
-}
+    dijkstra_graph = graph.Graph(True)
+    dijkstra_graph.graph = {
+        's': [(5, 'y'), (10, 't')],
+        'y': [(3, 't'), (2, 'z'), (9, 'x')],
+        'z': [(6, 'x'), (7, 's')],
+        't': [(2, 'y'), (1, 'x')],
+        'x': [(4, 'z')]
+    }
 
-mst = prim_graph.prim_mst()
-print(mst)
+    mst = prim_graph.prim_mst()
+    print(f"MST: {mst}")
 
-dijkstra_paths = dijkstra_graph.dijkstra('s')
-print(dijkstra_paths)
+    dijkstra_paths = dijkstra_graph.dijkstra('s')
+    print(f"\nDistances are {dijkstra_paths[0]}\nPaths are {dijkstra_paths[1]}")
 
-dijkstra = dijkstra_graph.shortest_path('s', 'x')
-print(dijkstra)
+    dijkstra = dijkstra_graph.shortest_path('s', 'x')
+    print(f"\nShortest distance between s and x is {dijkstra[0]}\nShortest path is {dijkstra[1]}")
+
+
+if __name__ == "__main__":
+    main()
