@@ -14,28 +14,6 @@ def generate_random_graph():
     return random_graph
 
 
-# new_graph = generate_random_graph()
-# new_graph.print_graph()
-# mst = new_graph.prim_mst()
-# print(mst)
-
-# new_graph = Graph.Graph()
-# test = Graph.Graph()
-# new_graph.graph = {
-#     0: [(4, 1), (8, 7)],
-#     1: [(4, 0), (8, 2), (11, 7)],
-#     2: [(8, 1), (7, 3), (4, 5), (2, 8)],
-#     3: [(7, 2), (9, 4), (14, 5)],
-#     4: [(9, 3), (10, 5)],
-#     5: [(4, 2), (14, 3), (10, 4), (2, 6)],
-#     6: [(2, 5), (1, 7), (6, 8)],
-#     7: [(8, 0), (11, 1), (1, 6), (7, 8)],
-#     8: [(2, 2), (6, 6), (7, 7)]
-# }
-# dist, path = new_graph.shortest_path(0, 3)
-# print(dist)
-# print(path)
-
 prim_graph = graph.Graph()
 prim_graph.graph = {
     'a': [(4, 'b'), (8, 'h')],
@@ -51,15 +29,18 @@ prim_graph.graph = {
 
 dijkstra_graph = graph.Graph(True)
 dijkstra_graph.graph = {
-    0: [(5, 5), (10, 8)],
-    5: [(3, 8), (2, 7), (9, 9)],
-    7: [(6, 9), (7, 0)],
-    8: [(2, 5), (1, 9)],
-    9: [(4, 7)]
+    's': [(5, 'y'), (10, 't')],
+    'y': [(3, 't'), (2, 'z'), (9, 'x')],
+    'z': [(6, 'x'), (7, 's')],
+    't': [(2, 'y'), (1, 'x')],
+    'x': [(4, 'z')]
 }
 
 mst = prim_graph.prim_mst()
 print(mst)
 
-dijkstra = dijkstra_graph.shortest_path(0, 9)
+dijkstra_paths = dijkstra_graph.dijkstra('s')
+print(dijkstra_paths)
+
+dijkstra = dijkstra_graph.shortest_path('s', 'x')
 print(dijkstra)
