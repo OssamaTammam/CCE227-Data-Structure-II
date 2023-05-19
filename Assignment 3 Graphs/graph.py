@@ -15,7 +15,7 @@ class Graph:
         if v not in self.graph:
             self.graph[v] = []
         self.graph[u].append((weight, v))
-        if self.directed:
+        if self.directed is False:
             self.graph[v].append((weight, u))
 
     def print_graph(self):
