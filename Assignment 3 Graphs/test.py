@@ -44,7 +44,26 @@ def main():
     print(f"\nDistances are {dijkstra_paths[0]}\nPaths are {dijkstra_paths[1]}")
 
     dijkstra = dijkstra_graph.shortest_path('s', 'x')
-    print(f"\nShortest distance between s and x is {dijkstra[0]}\nShortest path is {dijkstra[1]}")
+    print(f"\nShortest distance between s and x is {dijkstra[0]}\nShortest path is {dijkstra[1]}\n")
+
+    section_graph = graph.Graph()
+    section_graph.graph = {
+        0: [(2, 1), (1, 3), (4, 4)],
+        1: [(2, 0), (3, 2), (3, 3), (7, 5)],
+        2: [(3, 1), (5, 3), (8, 5)],
+        3: [(1, 0), (3, 1), (5, 2), (9, 4)],
+        4: [(4, 0), (9, 3)],
+        5: [(7, 1), (8, 2)]
+    }
+
+    mst = section_graph.prim_mst()
+    print(f"MST: {mst}")
+
+    dijkstra_paths = section_graph.dijkstra(4)
+    print(f"\nDistances are {dijkstra_paths[0]}\nPaths are {dijkstra_paths[1]}")
+
+    dijkstra = section_graph.shortest_path(4, 5)
+    print(f"\nShortest distance between 4 and 5 is {dijkstra[0]}\nShortest path is {dijkstra[1]}\n")
 
 
 if __name__ == "__main__":
